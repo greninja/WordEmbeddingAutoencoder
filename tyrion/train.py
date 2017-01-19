@@ -12,6 +12,7 @@ import numpy as np
 import argparse
 import time
 import pdb
+import datetime
 
 
 CONFIG_PATH = sys.argv[1]
@@ -104,7 +105,9 @@ def train(folder):
     with open(r'./embeddings.pickle', "wb") as outfile:
         pickle.dump(wordembeddings, outfile)
     print ("Training completed! Embedding done.")
-    print ("time is %f" % (time.time()-t))
+    sec = time.time() - t 
+    hours, minutes, seconds = str(datetime.timedelta(seconds=sec)).split(':')
+    print "Training took : {0} hours, {1} minutes, {2} seconds".format(hours,minutes,seconds)    
 
 if __name__ == "__main__":
     train(DATA_PATH)

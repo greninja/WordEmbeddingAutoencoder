@@ -24,7 +24,7 @@ class TrainModel(object):
         self.loss = tf.reduce_sum((self.inputs - self.recons)**2) + reg1 * tf.reduce_sum(self.W1 ** 2) + reg2 * tf.reduce_sum(self.W2 ** 2)
         self.train = tf.train.RMSPropOptimizer(learnrate, 0.9).minimize(self.loss)
         self.session = tf.Session()
-        tf.initialize_all_variables().run(session=self.session)    
+        tf.global_variables_initializer().run(session=self.session)  
 
        
     def trainonone(self, pa, ntimes):    
